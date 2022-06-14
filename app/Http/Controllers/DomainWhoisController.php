@@ -17,8 +17,15 @@ class DomainWhoisController extends Controller
         }
     }
     public function HtmlText($model){
-        $text =  '<p>'.$model->domainName.'</p>';
-        $text .=  '<p>'.$model->creationDate.'</p>';
+        $text =  '<p>domainName: '.$model->domainName.'</p>';
+        $text .=  '<p>parserType: '.$model->parserType.'</p>';
+        $text .=  '<p>whoisServer: '.$model->whoisServer.'</p>';
+        $text .=  '<p>creationDate: '.$model->creationDate.'</p>';
+        $text .=  '<p>expirationDate: '.$model->expirationDate.'</p>';
+        $text .=  '<p>updatedDate: '.$model->updatedDate.'</p>';
+        $text .=  '<p>owner: '.$model->owner.'</p>';
+        $text .=  '<p>registrar: '.$model->registrar.'</p>';
+        $text .=  '<p>dnssec: '.$model->dnssec.'</p>';
         return $text;
     }
 }
