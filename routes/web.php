@@ -20,3 +20,4 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::post('/domain-whois/domain-whois', 'App\Http\Controllers\DomainWhoisController@DomainWhois')->name('domain-whois');
+Route::get('/domain-whois/domain-screenshot', 'App\Http\Controllers\DomainWhoisController@Screenshot')->name('domain-screenshot');

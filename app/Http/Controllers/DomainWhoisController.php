@@ -1,13 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Spatie\Browsershot\Browsershot;
 use App\Http\Requests\DomainWhoisRequest;
 use App\Models\DomainWhois;
-use Exception;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Iodev\Whois\Factory;
 
 class DomainWhoisController extends Controller
 {
@@ -15,6 +11,14 @@ class DomainWhoisController extends Controller
     {
         $model = new DomainWhois();
         $model = $model->DomainWhois($request->domain);
-        return response()->json($model);
+        if ($model->domainName){
+            Browsershot::html($this->HtmlText($model))->save($model->domainName.'.jpeg');
+            return response()->json($model);
+        }
+    }
+    public function HtmlText($model){
+        $text =  '<p>'.$model->domainName.'</p>';
+        $text .=  '<p>'.$model->creationDate.'</p>';
+        return $text;
     }
 }
