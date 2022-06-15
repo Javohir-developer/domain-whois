@@ -5472,8 +5472,15 @@ __webpack_require__.r(__webpack_exports__);
       arr.forEach(function (value, index) {
         axios.post('/domain-whois/domain-whois', {
           domain: value
-        }).then(function (response) {
-          _this.domains.push(response.data);
+        }).then(function (response_1) {
+          console.log(response_1.data.domainName);
+          axios.post('/domain-whois/domain-screenshot', {
+            domain: response_1.data.domainName
+          }).then(function (response_2) {
+            _this.domains.push(response_1.data, response_2.data);
+
+            console.log(response_1.data, response_2.data);
+          });
         })["catch"](function (error) {
           _this.errored = error.response.data.message;
         });
